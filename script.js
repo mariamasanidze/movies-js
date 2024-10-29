@@ -30,7 +30,7 @@ getMovies(API_URL);
 function showMovies (movies) {
     (main.innerHTML = ""),
     movies.forEach((movie) => {
-        const {title, poster_path, vote_average, overview, release_date} =
+        const {title, poster_path, vote_average, overview, release_date ,id} =
         movie;
         const movieEl = document.createElement("div");
 
@@ -56,6 +56,10 @@ function showMovies (movies) {
   </div>
   
 `;
+
+movieEl.addEventListener("click", () =>  {
+  window.location.href = `movie.html?id=${id}`
+});
 main.appendChild(movieEl);
     });
 }
@@ -76,3 +80,4 @@ form.addEventListener("submit" , (e) => {
 
     getMovies(SEARCH_API + searchTerm);
 });
+
