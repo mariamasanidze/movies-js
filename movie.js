@@ -116,10 +116,49 @@ function updateSummery() {
 }
 
 BuyButton.addEventListener("click", () => {
-    if (selectedSeats.length > 0 ) {
-        alert(`you have booked ${selectedSeats.join(" ,")} seats`);
-}
-    else {
-        alert("please select a seat");
+    if (selectedSeats.length > 0) {
+        alert(`You have booked ${selectedSeats.join(", ")} seats`);
+        
+        window.location.href = "checkout.html";
+    } else {
+        alert("Please select a seat");
     }
-})
+});
+
+
+function updateCart(movieTitle, moviePrice) {
+   
+    cart.push({ title: movieTitle, price: moviePrice });
+    totalPrice += parseFloat(moviePrice);
+    
+  
+    displayCart();
+}
+
+
+function displayCart() {
+    const cartItemsDiv = document.getElementById('cart-items');
+    cartItemsDiv.innerHTML = ''; 
+
+    cart.forEach(item => {
+        const itemDiv = document.createElement('div');
+        itemDiv.textContent = `${item.title} - $${item.price}`;
+        cartItemsDiv.appendChild(itemDiv);
+    });
+
+    
+    document.getElementById('total-price').textContent = totalPrice.toFixed(2);
+}
+
+
+const addToCartButtons = document.querySelectorAll('.add-to-cart');
+addToCartButtons.forEach(button => {
+    button.addEventListener('click', function() {
+        const movieDiv = this.parentElement;
+        const movieTitle = movieDiv.getAttribute('data-title');
+        const moviePrice = movieDiv.getAttribute('data-price');
+        updateCart(movieTitle, moviePrice);
+    });
+});
+
+

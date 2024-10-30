@@ -6,17 +6,7 @@ const main = document.getElementById("main");
 const form = document.getElementById("form");
 const search = document.getElementById("search");
 
-// async function getMovies(url) {
-//     let myPromise = new Promise(function(resolve, reject){
-//         fetch(url)
-//         .then(Response => Response.json())
-//         .then(data => resolve(data.results))
 
-//     });
-//     await myPromise;
-//     console.log(myPromise);
-
-// };
 
 const getMovies = async (url) => {
     const result = await fetch(url);
